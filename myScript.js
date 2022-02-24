@@ -179,45 +179,10 @@ function getRandomPlayableTracks(tracks){
     return choosenTracks;
 }
 
-const main = async () => {
-    //get tag from URL
-    tag = await getTag();
-    console.log("hej");
-    let temp = await fetchData("https://api.spotify.com/v1/playlists/1Oqi6XaJYdzEqvOZamwJqW");
-    let tracks = temp.tracks.items;
-    console.log(tracks);
-    let choosenTracks = getRandomPlayableTracks(tracks);
-    questionsTemplate = resetQuestions();
-    console.log(questionsTemplate);
-    console.log(questionsTemplate[0].question);
-    let question;
-    for (let i = 0; i < 10; i++) {
-            let questionNr = choosenTracks[i];
-            tracks[questionNr];
-            let artists = [];
-            tracks[questionNr].track.artists.map(function(x) {
-                artists.push(x['name'])
-            });
-            question = {song: tracks[questionNr].track.name, 
-                artists: artists, 
-                album: tracks[questionNr].track.album.name, 
-                releaseYear: tracks[questionNr].track.album.release_date.slice(0,4), 
-                preview: tracks[questionNr].track.preview_url,
-                question: questionsTemplate[i].question
-            };
-            console.log("Song: "  + question.song);
-            console.log("Artists: "  + question.artists);
-            console.log("Album: " + question.album);
-            console.log("Preview: " + question.preview);
-            console.log("Preview: " + question.releaseYear);
-    }
-    questions.push(question);
-};
-
 const setQuestions = async () => {
     //get tag from URL
     console.log("hej");
-    tag = "BQBDQ99G6Q6EQROHDXObm2qLXZrH6wGB64W4JpqBwT-zMcarFrGzLk49kGTrqrVn97S2PLiSQSbbjcaIVt8jrWvLMxsb2oEHDWFkDGbp3_2Lifoy8gBqllk_7HUCp3YPPiwuoByZC2Z83cCV2wtiPzG6F09LlwLWPGE"
+    tag = await getTag();
     console.log(playlistId);
     let temp = await fetchData("https://api.spotify.com/v1/playlists/" + playlistId);
     let tracks = temp.tracks.items;
@@ -251,5 +216,3 @@ const setQuestions = async () => {
     }
     return questions;
 };
-
-//main();
