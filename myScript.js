@@ -21,6 +21,24 @@ nextButton.addEventListener('click', () => {
   setNextQuestion()
 });
 
+async function getTag(){
+
+  async function getHashParams() {
+    var hashParams = {};
+    var e, r = /([^&;=]+)=?([^&;]*)/g,
+        q = window.location.hash.substring(1);
+    while ( e = r.exec(q)) {
+       hashParams[e[1]] = decodeURIComponent(e[2]);
+    }
+    return hashParams;
+  };
+
+  var params = await getHashParams();
+
+  var access_token = params.access_token;
+  return access_token;
+}
+
 async function getPlaylist(){
     secondControls.classList.remove('hide');
     nextButton.classList.add('hide');
@@ -163,7 +181,7 @@ function getRandomPlayableTracks(tracks){
 
 const main = async () => {
     //get tag from URL
-    tag = "BQBGoFSl6nH43Z9dCD34cv5giFDy32-04shQSpyVqczAv0tdCL5gmIxrMpbAy0Ebdm3I5BCKBYK7AHDOV3O-X15z9H0iRt1C20Icy7pEqQGubzSS3WfAPDtmmo4CdmI9zjCzEzmgeymERjHkF6GO-1CwByIK_orTzUo";
+    tag = await getTag();
     console.log("hej");
     let temp = await fetchData("https://api.spotify.com/v1/playlists/1Oqi6XaJYdzEqvOZamwJqW");
     let tracks = temp.tracks.items;
