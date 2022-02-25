@@ -40,7 +40,6 @@ async function getTag(){
 }
 
 async function getPlaylist(){
-    audio = new Audio(question.preview);
     secondControls.classList.remove('hide');
     nextButton.classList.add('hide');
     enterButton.classList.add('hide');
@@ -73,6 +72,7 @@ function setNextQuestion() {
 }
 
 function showQuestion(question) {
+  audio = new Audio(question.preview);
   questionElement.innerText = question.question;
   audio.play();
 }
