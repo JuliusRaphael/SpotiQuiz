@@ -121,11 +121,7 @@ function answersToString(questions){
 
     }
     return returnString;
-}
-/**
- * Gets the access token from the url
- * @returns {string} with access token in it
- 
+} 
 
 async function getTag(){
 
@@ -143,7 +139,7 @@ async function getTag(){
 
   var access_token = params.access_token;
   return access_token;
-}*/
+}
 
 
 /**
