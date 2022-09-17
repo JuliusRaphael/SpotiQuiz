@@ -34,6 +34,8 @@ async function getTag(){
   };
 
   var params = await getHashParams();
+    
+  console.log(params);
 
   var access_token = params.access_token;
   return access_token;
